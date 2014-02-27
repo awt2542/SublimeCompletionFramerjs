@@ -1,0 +1,111 @@
+{
+  "scope": "source.js, source.coffee, source.js.embedded.html",
+
+  "completions":
+  [
+  	"properties",
+    { "trigger": "View({})", "contents": "View({${1}})" },
+
+    // View
+    "x",
+    "minX",
+    "midX",
+    "maxX",
+    "y",
+    "minY",
+    "midY",
+    "maxY",
+    "width",
+    "height",
+    "frame",
+    "screenFrame",
+    "contentFrame()",
+    "centerFrame()",
+
+    "visibe",
+    "opacity",
+    "clip",
+    "rotation",
+    "rotationX",
+    "rotationY",
+    "rotationZ",
+    "scale",
+    "scaleX",
+    "scaleY",
+    "scaleZ",
+
+    "superView",
+    "subViews",
+    { "trigger": "addSubView(view)", "contents": "addSubView(${1:view})" },
+    { "trigger": "removeSubView(view)", "contents": "removeSubView(${1:view})" },
+    "siblingViews",
+
+    "index",
+    { "trigger": "placeBefore(view)", "contents": "placeBefore(${1:view})" },
+    { "trigger": "placeBehind(view)", "contents": "placeBehind(${1:view})" },
+    "bringToFront()",
+    "sendToBack()",
+
+    "style",
+    "html",
+    "destroy()",
+
+    // Filters
+    "blur",
+    "brightness",
+    "saturate",
+    "hueRotate",
+    "contrast",
+    "invert",
+    "grayscale",
+    "sepia",
+
+    // Animation
+    { "trigger": "animate({...})", "contents": "animate({\n\tproperties:{ \n\t\t${1}\t\t\n\t}\n})" },
+    "animateStop()",
+    { "trigger": "on(event,function)", "contents": "on(\"${1}\",function(){\n\t${2}\n})" },
+    // ScrollView
+    "scrollFrame",
+
+    // ImageView
+    "image",
+
+    // Animation properties
+    { "trigger": "curve", "contents": "curve: \"${1}\"" },
+    "linear",
+    "ease-in",
+    "ease-out",
+    "ease-in-out",
+    { "trigger": "bezier-curve()", "contents": "bezier-curve(${1:a}, ${2:b}, ${3:c}, ${4:d})"},
+    { "trigger": "spring()", "contents": "spring(${1:tension}, ${2:friction}, ${3:velocity})"},
+    "time",
+    { "trigger": "origin", "contents": "origin: \"${1:50% 50%}\"" },
+    "start()",
+    "stop()",
+    "reverse()",
+
+    // Utilities
+    { "trigger": "utils.cycle()", "contents": "utils.cycle([${1:1,2, ...}])" },
+    { "trigger": "utils.randomColor()", "contents": "utils.randomColor(${1:alpha})" },
+    { "trigger": "utils.delay()", "contents": "utils.delay(${1:time},${2:function})" },
+    { "trigger": "utils.interval()", "contents": "utils.interval(${1:time},${2:function})" },
+    { "trigger": "utils.throttle()", "contents": "utils.throttle(${1:time},${2:function})" },
+    { "trigger": "utils.debounce()", "contents": "utils.debounce(${1:time},${2:function})" },
+    { "trigger": "utils.convertPoint()", "contents": "utils.convertPoint(${1:point},${2:viewA},${3:viewB})"},
+    { "trigger": "utils.max()", "contents": "utils.max(${1:array})" },
+    { "trigger": "utils.min()", "contents": "utils.min(${1:array})" },
+    { "trigger": "utils.sum()", "contents": "utils.sum(${1:array})" },
+    "utils.uuid()",
+    { "trigger": "utils.round()", "contents": "rutils.ound(${1:number},${2:decimals})" },
+    "utils.isWebKit()",
+    "utils.isMobile()",
+    "utils.isTouch()",
+
+    // Configuration
+    "Framer.config.timeSpeedFactor",
+    "Framer.config.roundingDecimals",
+    "Framer.config.animationPrecision",
+    "Framer.config.animationDebug",
+    "Framer.config.animationProfile"
+  ]
+}
