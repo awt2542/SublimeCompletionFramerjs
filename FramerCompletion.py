@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, os, json
+import sublime, sublime_plugin, os, json, re
 from os.path import basename
 
 class FramerCompletionCommand(sublime_plugin.EventListener):
@@ -25,12 +25,14 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 			self.completions[:] = [] # clear the list to refresh
 			for line in file_lines:
 				if "name" in line:
-					line = line.strip().strip('"name": "').strip('",') # ugly clean up of string
-					view = "PSD[\""+line+"\"]"
+					#print line
+					pattern = r'"([^"]*)"' # inside quotes
+					viewname = re.findall(pattern, line)[1]	
+					view = "PSD[\""+viewname+"\"]"
 					self.completions.append((view+'\t'+"Framer",view)) #append a tuple with text to display and insert
-			self.completions.sort() # make results show in alphabetical order
-		except IOError:
-			print "input error views"
+			self.completions.sort() # alphabetical order
+		except Exception, e:
+			print e
 		else:
 			file_lines.close()
 
