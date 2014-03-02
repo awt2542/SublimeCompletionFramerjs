@@ -3,12 +3,15 @@ from os.path import basename
 
 class FramerCompletionCommand(sublime_plugin.EventListener):
 
+	def is_supported_format(self, view):
+		if ".js" in view.file_name() or ".html" in view.file_name():
+			return True
+
 	docCompletions = [] # list to save doc completion tuples in
 	completions = [] # list to save completion tuples in
 
 	dirname = os.path.dirname(os.path.abspath(__file__))
-	os.chdir(dirname)
-	json_file = open("framerdocs.json")
+	json_file = open(os.path.join(dirname,"framerdocs.json"))
 	try:
 		json_data = json.load(json_file)
 		for key in json_data:
@@ -35,15 +38,15 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 			file_lines.close()
 
 	def on_activated(self, view):
-		pathToFile = os.path.dirname(view.file_name()) # path to current file
-		projectName = pathToFile.split("/")[-1]
-		viewsPath = pathToFile+"/framer/views."+projectName+".js"
-		if ".js" in view.file_name():
-			os.chdir(pathToFile)
-			self.findViews(viewsPath)
-		else:
-			self.completions[:] = [] # clear the list
+		if view.file_name() is not None: # only run on saved files
+			pathToFile = os.path.dirname(view.file_name())
+			if os.path.exists(os.path.join(pathToFile,"framer/framer.js")): # a framer project
+				projectName = pathToFile.split("/")[-1]
+				viewsPath = pathToFile+"/framer/views."+projectName+".js"
+				if self.is_supported_format(view):
+					self.findViews(viewsPath)
+		
 
 	def on_query_completions(self, view, prefix, locations):
-		if ".js" in view.file_name(): # needs to support embeds too
+		if self.is_supported_format(view):
 			return self.completions + self.docCompletions
