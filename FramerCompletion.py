@@ -2,6 +2,8 @@ import sublime, sublime_plugin, os, json, re
 from os.path import basename
 
 class FramerCompletionCommand(sublime_plugin.EventListener):
+	settings = sublime.load_settings('FramerCompletion.sublime-settings')
+
 	docCompletions, completions = [], [] # empty lists to save completions in
 
 	def is_supported_format(self, fileName):
@@ -17,12 +19,16 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 
 	def findViews(self, viewfile):
 		with open(viewfile) as file_lines:
+			dotNotation = self.settings.get('dotNotation')
 			self.completions[:] = [] # clear to refresh list
 			for line in file_lines:
 				if "name" in line:
 					pattern = r'"([^"]*)"' # inside quotes
 					viewname = re.findall(pattern, line)[1]	
-					view = "PSD[\""+viewname+"\"]"
+					if dotNotation:
+						view = "PSD."+viewname
+					else:
+						view = "PSD[\""+viewname+"\"]"
 					self.completions.append((view+'\t'+"Framer",view)) #append a tuple with text to display and insert
 			self.completions.sort() # alphabetical order
 
