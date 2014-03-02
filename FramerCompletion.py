@@ -22,11 +22,11 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 	def findViews(self, path):
 		try:
 			file_lines = open(path)
+			self.completions[:] = [] # clear the list to refresh
 			for line in file_lines:
 				if "name" in line:
 					line = line.strip().strip('"name": "').strip('",') # ugly clean up of string
 					view = "PSD[\""+line+"\"]"
-					self.completions[:] = [] # clear the list to refresh
 					self.completions.append((view+'\t'+"Framer",view)) #append a tuple with text to display and insert
 			self.completions.sort() # make results show in alphabetical order
 		except IOError:
