@@ -1,9 +1,12 @@
 SublimeCompletionFramerjs
 =========================
 
-This plugin adds basic auto completion to your FramerJS projects while working in Sublime Text 2.
+This plugin adds Framer.js autocompletion for:
+
+1. The Framer docs
+2. Your exported views
+
+![View of autocomplete dropdown](http://cl.ly/image/2o043809262v/framercomplete.png "Completion dropdown")
 
 ##Installation
-1. Download the latest release [here](https://github.com/awt2542/SublimeCompletionFramerjs/archive/master.zip)
-2. Place in `~/Library/Application Support/Sublime Text 2/Packages/User/SublimeCompletionFramerjs`
-3. Done!
+1. Place in `~/Library/Application Support/Sublime Text 2/Packages/User/SublimeCompletionFramerjs`
