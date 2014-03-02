@@ -10,3 +10,7 @@ This plugin adds Framer.js autocompletion for:
 
 ##Installation
 1. Place in `~/Library/Application Support/Sublime Text 2/Packages/User/SublimeCompletionFramerjs`
+
+##Stuff to do
+* Settings for Coffescript and dot notation
+* Testing/optimization (threading?)
