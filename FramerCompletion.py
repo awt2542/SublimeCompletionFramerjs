@@ -14,7 +14,7 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 		for key in json_data:
 			docCompletions.append((key,json_data[key]))
 	except Exception, e:
-		print e
+		pass
 	else:
 		json_file.close()
 	
@@ -25,14 +25,13 @@ class FramerCompletionCommand(sublime_plugin.EventListener):
 			self.completions[:] = [] # clear the list to refresh
 			for line in file_lines:
 				if "name" in line:
-					#print line
 					pattern = r'"([^"]*)"' # inside quotes
 					viewname = re.findall(pattern, line)[1]	
 					view = "PSD[\""+viewname+"\"]"
 					self.completions.append((view+'\t'+"Framer",view)) #append a tuple with text to display and insert
 			self.completions.sort() # alphabetical order
 		except Exception, e:
-			print e
+			pass
 		else:
 			file_lines.close()
 
