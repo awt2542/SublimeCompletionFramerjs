@@ -47,5 +47,6 @@ class FramerCompletion(sublime_plugin.EventListener):
 			self.findViews(view.file_name())
 
 	def on_query_completions(self, view, prefix, locations):
-		if self.is_supported_file(view.file_name()):
-			return self.completions + self.doc_completions
+		if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
+			if self.is_supported_file(view.file_name()):
+				return self.completions + self.doc_completions
