@@ -83,5 +83,14 @@
     "Framer.config.roundingDecimals": "Framer.config.roundingDecimals",
     "Framer.config.animationPrecision": "Framer.config.animationPrecision",
     "Framer.config.animationDebug": "Framer.config.animationDebug",
-    "Framer.config.animationProfile": "Framer.config.animationProfile"
+    "Framer.config.animationProfile": "Framer.config.animationProfile",
+    "mouseenter": "mouseenter",
+    "mouseout": "mouseout",
+    "mouseover": "mouseover",
+    "mousedown": "mousedown",
+    "mouseup": "mouseup",
+    "mousemove": "mousemove",
+    "click": "click",
+    "dblclick": "dblclick",
+    "contextmenu": "contextmenu"
 }
