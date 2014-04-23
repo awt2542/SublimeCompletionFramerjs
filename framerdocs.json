@@ -84,6 +84,9 @@
     "Framer.config.animationPrecision": "Framer.config.animationPrecision",
     "Framer.config.animationDebug": "Framer.config.animationDebug",
     "Framer.config.animationProfile": "Framer.config.animationProfile",
+    "Framer.config.defaultViewWidth": "Framer.config.defaultViewWidth",
+    "Framer.config.defaultViewHeight": "Framer.config.defaultViewHeight",
+    "Framer.config.defaultViewBackgroundColor": "Framer.config.defaultViewBackgroundColor",
     "mouseenter": "mouseenter",
     "mouseout": "mouseout",
     "mouseover": "mouseover",
@@ -92,5 +95,8 @@
     "mousemove": "mousemove",
     "click": "click",
     "dblclick": "dblclick",
-    "contextmenu": "contextmenu"
+    "contextmenu": "contextmenu",
+    "delay": "delay",
+    "draggable": "draggable",
+    "copy()": "copy()"
 }
