@@ -18,7 +18,8 @@ class FramerCompletion(sublime_plugin.EventListener):
 	with open(plugin_dir+"/framerdocs.json") as json_file:
 		json_data = json.load(json_file)
 		for key in json_data:
-			doc_completions.append((key,json_data[key]))
+			doc_completions.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+	
 
 	def is_supported_file(self, file_path):
 		if file_path is not None: # only run on saved files
@@ -39,14 +40,14 @@ class FramerCompletion(sublime_plugin.EventListener):
 						view = "PSD."+viewname
 					else:
 						view = "PSD[\""+viewname+"\"]"
-					self.completions.append((view+'\t'+"Framer view",view))
+					self.completions.append((view.encode('utf-8')+'\t'+"Framer view",view))
 			self.completions.sort()
 
-	def on_activated(self, view):
+	def on_activated(self, view): #when user actives a document/tab
 		if self.is_supported_file(view.file_name()):
 			self.findViews(view.file_name())
 
-	def on_query_completions(self, view, prefix, locations):
+	def on_query_completions(self, view, prefix, locations): #when user types
 		if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
 			if self.is_supported_file(view.file_name()):
 				return self.completions + self.doc_completions
