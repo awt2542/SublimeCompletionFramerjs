@@ -51,3 +51,6 @@ class FramerCompletion(sublime_plugin.EventListener):
 		if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
 			if self.is_supported_file(view.file_name()):
 				return self.completions + self.doc_completions
+		elif view.match_selector(locations[0], "source.coffee"):
+			if self.is_supported_file(view.file_name()):
+				return self.completions
