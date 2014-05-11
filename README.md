@@ -4,7 +4,7 @@ SublimeCompletionFramerjs
 This plugin adds Framer.js autocompletion for:
 
 1. The Framer docs
-2. Your exported views
+2. Your exported views in the PSD object
 
 ![View of autocomplete dropdown](http://cl.ly/image/2o043809262v/framercomplete.png "Completion dropdown")
 
@@ -20,5 +20,5 @@ Change to `true` if you want to use dot notation for the PSD autocomplete
 Set to `false` if you prefer bracket notation.
 
 ##Stuff to do
-* Settings for Coffescript
-* Testing/optimization (threading?)
+* Optimization
+* Framer 3 support
