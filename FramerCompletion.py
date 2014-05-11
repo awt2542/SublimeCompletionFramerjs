@@ -11,14 +11,18 @@ class PathInfo:
 
 class FramerCompletion(sublime_plugin.EventListener):
 	settings = sublime.load_settings('FramerCompletion.sublime-settings')
-	doc_completions, completions = [], [] # empty lists to save completions in
+	js_docs, coffee_docs, completions = [], [], [] # empty lists to save completions in
 
 	# Add Framer docs
 	plugin_dir = os.path.dirname(os.path.abspath(__file__))
-	with open(plugin_dir+"/framerdocs.json") as json_file:
+	with open(plugin_dir+"/framerdocs-js.json") as json_file:
 		json_data = json.load(json_file)
 		for key in json_data:
-			doc_completions.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+			js_docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+	with open(plugin_dir+"/framerdocs-coffee.json") as json_file:
+		json_data = json.load(json_file)
+		for key in json_data:
+			coffee_docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
 	
 
 	def is_supported_file(self, file_path):
@@ -50,7 +54,7 @@ class FramerCompletion(sublime_plugin.EventListener):
 	def on_query_completions(self, view, prefix, locations): #when user types
 		if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
 			if self.is_supported_file(view.file_name()):
-				return self.completions + self.doc_completions
+				return self.completions + self.js_docs
 		elif view.match_selector(locations[0], "source.coffee"):
 			if self.is_supported_file(view.file_name()):
-				return self.completions
+				return self.completions + self.coffee_docs
