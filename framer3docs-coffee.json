@@ -72,7 +72,7 @@
     "draggable.speedY": "draggable.speedY",
     "draggable.calculateVelocity()": "draggable.calculateVelocity",
     "states.animationOptions": "states.animationOptions",
-    "states.add(\"name\", {...})": "states.add \"${1:name}\", ${2})",
+    "states.add(\"name\", {...})": "states.add \"${1:name}\": ${2})",
     "states.remove(\"name\")": "states.remove \"${1:name}\"",
     "states.switch(\"name\")": "states.switch \"${1:name}\"",
     "states.current": "states.current",
