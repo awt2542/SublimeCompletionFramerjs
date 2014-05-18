@@ -8,21 +8,30 @@ class PathInfo:
 		self.project_name = self.project_path.split("/")[-1]
 		self.framer_path = self.project_path+"/framer"
 		self.view_file = self.framer_path+"/views."+self.project_name+".js"
+		self.framer_file = self.framer_path+"/framer.js"
 
 class FramerCompletion(sublime_plugin.EventListener):
 	settings = sublime.load_settings('FramerCompletion.sublime-settings')
-	js_docs, coffee_docs, completions = [], [], [] # empty lists to save completions in
+	js_2docs, coffee_2docs, js_3docs, coffee_3docs, completions = [], [], [], [], []
 
 	# Add Framer docs
 	plugin_dir = os.path.dirname(os.path.abspath(__file__))
-	with open(plugin_dir+"/framerdocs-js.json") as json_file:
+	with open(plugin_dir+"/framer2docs-js.json") as json_file:
 		json_data = json.load(json_file)
 		for key in json_data:
-			js_docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
-	with open(plugin_dir+"/framerdocs-coffee.json") as json_file:
+			js_2docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+	with open(plugin_dir+"/framer2docs-coffee.json") as json_file:
 		json_data = json.load(json_file)
 		for key in json_data:
-			coffee_docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+			coffee_2docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+	with open(plugin_dir+"/framer3docs-js.json") as json_file:
+		json_data = json.load(json_file)
+		for key in json_data:
+			js_3docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
+	with open(plugin_dir+"/framer3docs-coffee.json") as json_file:
+		json_data = json.load(json_file)
+		for key in json_data:
+			coffee_3docs.append((key.encode('utf-8')+'\t'+"Framer",json_data[key]))
 	
 
 	def is_supported_file(self, file_path):
@@ -52,9 +61,21 @@ class FramerCompletion(sublime_plugin.EventListener):
 			self.findViews(view.file_name())
 
 	def on_query_completions(self, view, prefix, locations): #when user types
-		if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
-			if self.is_supported_file(view.file_name()):
-				return self.completions + self.js_docs
-		elif view.match_selector(locations[0], "source.coffee"):
-			if self.is_supported_file(view.file_name()):
-				return self.completions + self.coffee_docs
+		with open(PathInfo(view.file_name()).framer_file) as f:
+			
+			if re.search(r'Framer 2',f.readline()) is not None:
+				#framer 2 project
+				if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
+					if self.is_supported_file(view.file_name()):
+						return self.completions + self.js_2docs
+				elif view.match_selector(locations[0], "source.coffee"):
+					if self.is_supported_file(view.file_name()):
+						return self.completions + self.coffee_2docs
+			else:
+				#probably a framer 3 project
+				if view.match_selector(locations[0], "source.js, source.js.embedded.html"):
+					if self.is_supported_file(view.file_name()):
+						return self.completions + self.js_3docs
+				elif view.match_selector(locations[0], "source.coffee"):
+					if self.is_supported_file(view.file_name()):
+						return self.completions + self.coffee_3docs
