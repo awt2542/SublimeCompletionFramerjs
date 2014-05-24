@@ -23,6 +23,7 @@
     "centerY()": "centerY",
     "pixelAlign()": "pixelAlign",
     "backgroundColor": "backgroundColor",
+    "borderRadius": "borderRadius",
     "visible": "visible",
     "opacity": "opacity",
     "clip": "clip",
