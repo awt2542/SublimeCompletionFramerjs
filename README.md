@@ -19,5 +19,5 @@ Change to `true` if you want to use dot notation for the PSD autocomplete
 
 Set to `false` if you prefer bracket notation.
 
-##Stuff to do
-* Optimization and refactoring
+##Improvements
+Send me a pull request or contact me on twitter if you have any suggestions: @andreaswah 
