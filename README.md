@@ -18,6 +18,3 @@ To make user specific settings, copy the contents of FramerCompletion.sublime-se
 Change to `true` if you want to use dot notation for the PSD autocomplete
 
 Set to `false` if you prefer bracket notation.
-
-##Improvements
-Send me a pull request or contact me on twitter if you have any suggestions: [@andreaswah](https://twitter.com/andreaswah)
